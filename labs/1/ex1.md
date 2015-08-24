@@ -12,8 +12,8 @@ Instructions for Setting up git to get and submit labs/homework assignments:
   * Change into the directory for the course repository on your local machine.
   * Create a simple text file in the lab/0 subdirectory of your local repository.  (e.g. `echo "Hello World" > lab/0/code_name.txt` )
   * Commit it to your local repository
-```git add lab/0/code_name.txt
-git commit -m "my test"``` 
+```git add lab/0/code_name.txt;  
+git commit -m "my test at commiting a file"``` 
   * Push the changes to your fork of the class branch.  `git push`
   *  Then go to your repository's webpage on github.com (or git server of yoru choice) to verify that the file you added showed up. If you see it, then congrats... you're using distributed version control system.  If not, ask someone for help.
 

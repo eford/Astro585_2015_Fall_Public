@@ -10,7 +10,7 @@ All three interface are installed in both the Osmond Mac lab and the Astro UG la
 
 As each location is slightly different, I've prepared separate instructions for each location:
 * [Getting Started using Julia/IJulia/Juno in the PSU Osmond Computer Lab](https://docs.google.com/document/d/1iG4WR-9vJXj38LHcPk_GecSzxl7NN_SBImcy-cFjqEM/edit?usp=sharing)
-* [Getting Started with Julia/IJulia/Juno in the Astro 537 Computer Lab](://docs.google.com/document/d/1glbK2TlP77Tk3FJHvCHDB9QCtMfNCsb1476-afm-R0o/edit?usp=sharing)
+* [Getting Started with Julia/IJulia/Juno in the Astro 537 Computer Lab](https://docs.google.com/document/d/1glbK2TlP77Tk3FJHvCHDB9QCtMfNCsb1476-afm-R0o/edit?usp=sharing)
 
 There are also instructions online for setting up each of these on your own machines:
 * Download [Julia (the language)](http://julialang.org/downloads/)
@@ -18,10 +18,7 @@ There are also instructions online for setting up each of these on your own mach
 * [Installing IJulia on one of your own machines](https://github.com/JuliaLang/IJulia.jl) (note that this requires having IPython setup correctly)
 
 Using some machine, and one of the interfaces, start Julia.
-Enter a simple command like
-```1+2```
-followed by Shift-Enter and see if it returns 3.  If so, you're good to go.
-If not, then ask someone for help.
+Enter a simple command like `1+2` followed by `Shift-Enter` and see if it returns `3`.  If so, you're good to go.  If not, then ask someone for help.
 
 You can exit the REPL version using `quit()`.  Exit Juno by closing the app.  Or "shutdown" the IJulia notebook from the webpage listing the various notebooks availiable.
 

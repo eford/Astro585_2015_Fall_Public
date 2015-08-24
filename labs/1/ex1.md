@@ -10,6 +10,7 @@ Instructions for Setting up git to get and submit labs/homework assignments:
 4.  Follow the instructions on [forking a repository](https://help.github.com/articles/fork-a-repo/) using the [PsuAstro585 template repository](https://github.com/eford/PsuAstro585) and cloning it on your local machine.
 5.  Test submitting a file.
   * Change into the directory for the course repository on your local machine.
+  * Make sure you have the most recent version of the template files, instructions, etc. by running `git pull` )
   * Create a simple text file in the lab/0 subdirectory of your local repository.  (e.g. `echo "Hello World" > lab/0/code_name.txt` )
   * Commit it to your local repository
 ```git add lab/0/code_name.txt;  

@@ -1,9 +1,21 @@
-# Astro 585 Lab 2, Exercise 3
-
+# Astro 585 Lab 2, Exercise 4
+## Numerical Stability of Integrators
 
 Consider integrating the equations of motion for a test particle orbiting a star fixed at the origin. In 2D, there are two 2nd order ODEs:
 
 
+function calc_time_log_likelihood(Nobs::Int, Mtimes::Int = 1)
+  @assert (Nobs>=1);
+  srand(42);
+  z = zeros(Nobs);
+  sigma = 2. * ones(Nobs);
+  y = z + sigma .* randn(Nobs);
+  total = 0.;
+  for i in 1:Mtimes
+    total = total + @elapsed log_likelihood(y,sigma,z);
+  end
+  return total;
+end
 
 a. Write a function integrate_euler!(state,dt, duration) that integrates a system (described by state) using Eulers method and steps of size dt for an interval of time given by duration. It would probably be wise to write at least two additional functions. Have your function return a two dimensional array containing a list of the states of the system during your integration
 

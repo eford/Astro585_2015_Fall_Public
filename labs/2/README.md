@@ -15,6 +15,7 @@ Then tell git that you want your local repository to know about another remote r
 ```
 > git remote add upstream git@github.com:eford/PsuAstro585.git
 ```
+If you're working from multiple local repositories (e.g., one on a lab computer, one on your laptop), then you'll need to do this once for each repository.  
 
 Remember that you can "pull" changes from your remote repository into your local repository with the command.
 ```
@@ -22,13 +23,14 @@ Remember that you can "pull" changes from your remote repository into your local
 ```
 When you don't specify a repository after the pull command, then by default git uses the "origin" repository that you specified when you issued the `git clone` command to setup your local repository.
 
-Now, we'll "pull" in changes from the upstream repository with the command
+Now, we'll "pull" in changes from the "master" branch of the "upstream" repository with the command
 ```
 > git pull upstream master
 ```
 
 If all goes smoothly, then you'll now have new files in the labs/2 subdirectory.
 
-If you run into problems, you can ask for help or just go view the files via a web browser at github https://github.com/eford/PsuAstro585.  
+If you run into problems with git, ask for help.  Or you can just go view the files via a web browser at github https://github.com/eford/PsuAstro585.  
 
+Note that exercise 4 is in an IJulia notebook (so you can view the equations).  If you don't have IPython working, you can still view the ipython notebook at github https://github.com/eford/PsuAstro585.
  

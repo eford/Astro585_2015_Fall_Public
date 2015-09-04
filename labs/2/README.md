@@ -5,7 +5,7 @@
 1.  Developing a Well Tested Function
 2.  Benchmarking Code, Regression Tests & Algorithmic Optimizations
 3.  Large Linear Algebra Problems
-4.  Numerical Stability of Integrators 
+4.  Numerical Stability of Integrators  (as time permits)
 
 ## Getting started with lab 2
 

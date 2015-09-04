@@ -1,4 +1,5 @@
 # PsuAstro585:  Lab 1
+# Floating Point Arithmetic (plus gtting Started with Git & Julia) 
 
 ## Exercises
 1.  Setup/Learn to use git for getting/submitting assignments.  

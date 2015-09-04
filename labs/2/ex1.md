@@ -26,7 +26,7 @@ end
 a.  Import the test module that is part of the standard Julia language via 
 ```julia
 using Base.Test
-```.
+```
 Explore how Julia's @test macro works by running code such as
 ```julia
 @test 1==2

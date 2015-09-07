@@ -24,7 +24,8 @@ Notes
 Examples of other architectures include: 
   - a distributed memory system (e.g., one of the [Penn State clusters](https://ics.psu.edu/advanced-cyberinfrastructure/ics-aci-infrastructure/)), 
   - a many-core accelerator (e.g., [GPU](https://developer.nvidia.com/what-cuda) or [Intel Phi](http://www.intel.com/content/www/us/en/high-performance-computing/high-performance-xeon-phi-coprocessor-brief.html)), or 
-  - on the cloud (e.g., [Amazon Elastic Compute Cloud](http://aws.amazon.com/ec2/), [Domino](https://www.dominodatalab.com/cloud)).
+  - on the cloud (e.g., [Amazon Elastic Compute Cloud](http://aws.amazon.com/ec2/), [Domino](https://www.dominodatalab.com/cloud)).  
 If you're using Julia, then I'd guess than one of the Penn State clusters or the Domino cloud would be the least work.  Of course, if using another architecture is more advantageous for your research, then you should give that serious consideration.
+
 2. This is most relevant if you're proposing something non-standard, e.g. using Python for significant computations, an Intel Xeon Phi coprocessor, some library that you'll need help installing.  
 

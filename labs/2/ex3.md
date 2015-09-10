@@ -7,7 +7,7 @@ Consider a modern laptop CPU with 4 GB (=4*2^30) of usable memory and capable pe
 a. What is the largest matrix that the above computer could fit into its available memory at one time?
 
 
-b. If we use LU factorization to solve a linear system, estimate how long would it take to solve the maximum size linear system that would fit into memory at once. You may assume the computation is maximally efficient, the computer reaches peak performance and the LU decomposition requires (2/3)*n^3 flops.
+b. If we use LU factorization to solve a linear system, estimate how long would it take to solve the maximum size linear system that would fit into memory at once.  You may assume the computation is maximally efficient, the computer reaches peak performance and the LU decomposition requires `(2/3)*n^3` flops, where `n` refers to the number of rows in the square array being factorized.
 
 c. For a modern laptop, does memory or compute time limit the size of system that can be practically solved with LU decomposition?  What about a high-end workstaiton with 1TB of RAM?
 

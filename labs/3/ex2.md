@@ -1,7 +1,5 @@
 # Astro 585 Lab 3, Exercise 2
 
-## Warning:  Still under construction
-
 # File I/O, Part 2
 
 ## Reading and Writing Binary Files
@@ -10,10 +8,11 @@ a)  Write two functions that open a file, write/read the data from an array in b
 Hints:  You could use [write]( http://docs.julialang.org/en/release-0.3/stdlib/io-network/#Base.write) and [read](http://docs.julialang.org/en/release-0.3/stdlib/io-network/#Base.read) or [serialize](http://docs.julialang.org/en/release-0.3/stdlib/io-network/#Base.serialize) and [deserialize](http://docs.julialang.org/en/release-0.3/stdlib/io-network/#Base.deserialize).  
 Remember to commit your changes to your git repository.  Write a new function to test your functions for reading/writing binary files.  If the test reveals any bugs, fix them and write a sentence or two about what you learned from the experience.
 
-b) Time how long it takes for both reading and writing of the 1024 and 1024^2 size arrays.  If its practical on your computer, try a significantly larger size like 10*10242 or 100*10242.  (Youll likely use open, close (or a do block), and either read and write or serialize and deserialize.)  How do these times compare to the time required for ASCII files?  How does the resulting file size compare?    
+b) Time how long it takes for both reading and writing of the 1024 and 1024^2 size arrays.  If its practical on your computer, try a significantly larger size like 10*1024^2 or 100*1024^2.  (Youll likely use open, close (or a do block), and either read and write or serialize and deserialize.)  How do these times compare to the time required for ASCII files?  How does the resulting file size compare?   
+(If you used serialize/deserialize, what is the big caveat about using those for files?  Give an example of a use case where they would be inappropriate and write/read should be used instead.  Give a use case that would be appropriate for serialize/deserialize.)
 
 
-c) Repeat part a, but reading and writing the data to a binary file in the JLD format (built on top of HDF5).  For this, youll need to add and load Julias JLD package:
+c) Repeat part a, but reading and writing the data to a binary file in the JLD format (built on top of [HDF5](http://www.hdfgroup.org/HDF5/) and the [Julia interface to HDF5](https://github.com/timholy/HDF5.jl)).  For this, youll need to add and load Julia's [JLD package](https://github.com/JuliaLang/JLD.jl):
 ```julia
 Pkg.add("JLD")
 using JLD

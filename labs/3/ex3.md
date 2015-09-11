@@ -1,18 +1,20 @@
 # Astro 585 Lab 3, Exercise 3
 
-## Warning:  Still under construction
-
 # Documenting your Function
 
 In Julia, the `#` character causes the rest of the line to be interpreted as a comment (except when inside [strings](http://docs.julialang.org/en/release-0.3/manual/strings/) and [non-standard string literals](http://docs.julialang.org/en/release-0.3/manual/strings/#non-standard-string-literals)).  
-If you want to have a multi-line comment, you may find it use to use `#=` like this
+If you want to have a multi-line comment, you may find it use to use `#=` to start and `=#` to end the commented section like this
 ```julia
-# This is a single line comment.  It's very useful simple comments.
+# This is a single line comment.  It's very useful for simple comments.
+x = 1   # This line actually binds x to the value 1
+# y = 2   This line is just a comment so doesn't affect y
 #= This is a multiline comment.
    It can be useful for more lengthy comments, such as 
       - what each of a function's does,
       - references for the algorithm you're using, or
       - writing mathematical equations.
+   z = 3
+   The above line does not cause z to be bound to the value 3, since it's inside a comment block.
 =#
 ```
 
@@ -61,5 +63,8 @@ end
 Note that this should run without errors.  But, as written, this won't actually work with Julia version v0.3.*, since since Docile documents packages, not functions or files.  With version v0.3.*, you'd have to make your documented function part of a Julia package for `? test_writecsv_readcsv_on_array` to return the above string.  
 
 Fortunately, Julia v0.4 (likely to come out very soon) supports a very similar syntax natively (i.e., without loading Docile) and can be used to document individual functions, even if they're not part of a package.  
-While the above syntax still works, v0.4 encourages a slightly simppler syntax (e.g., the `->` isn't necessary).  Also, note that some of the features recently addedto Docile aren't included. See the [latest version of the Julia manual](http://julia.readthedocs.org/en/latest/manual/documentation/) for details.)
+While the above syntax still works, v0.4 encourages a slightly simppler syntax (e.g., the `doc` and `->` aren't necessary).  Also, note that some of the features recently addedto Docile aren't included. See the [latest version of the Julia manual](http://julia.readthedocs.org/en/latest/manual/documentation/) for details.)
+
+
+
 

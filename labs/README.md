@@ -8,7 +8,9 @@
 - Lab #6:  Parallel Programming for a Multi-Core System
 - Lab #7:  Parallel Programming for Clusters (short)
 - Lab #8:  GPU Computing  (short)
-- Lab #9?:  Cloud Computing  (short)
+- Lab #9?: Cloud Computing  (short)
 
-Files will appear in the course github repository as labs become available.  Remember to check for updates prior to each lab.
+Files will appear in the course github repository as labs become available.  
+Remember to check for updates prior to each lab (`git pull upstream master`). 
+
 

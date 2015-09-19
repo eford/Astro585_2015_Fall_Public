@@ -47,11 +47,14 @@ function advance_leapfrog!(state::Vector{Float64},derivs::Vector{Float64}, dt::F
   if !derivs_current 
     update_derivs_pos!(state,derivs);
   end
-  {state[i] = state[i] + 0.5*dt*derivs[i]  for i in 1:2}
+  state[1] += 0.5*dt*derivs[1]
+  state[2] += 0.5*dt*derivs[2]
   update_derivs_vel!(state,derivs);
-  {state[i] = state[i] + dt*derivs[i]      for i in 3:4}
+  state[3] += dt*derivs[3]  
+  state[4] += dt*derivs[4]   
   update_derivs_pos!(state,derivs);
-  {state[i] = state[i] + 0.5*dt*derivs[i]  for i in 1:2}    
+  state[1] += 0.5*dt*derivs[1]
+  state[2] += 0.5*dt*derivs[2]
 end
 
 # Input/Output: state = [x,y,vx,vy], an array of two 2-d positions and velocities for a test particle

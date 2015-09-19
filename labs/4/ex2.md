@@ -1,7 +1,5 @@
 # Astro 585 Lab 4, Exercise 2
 
-### Still need to test, proof and finalize.
-
 ### Loop vs Vectorized vs Map vs MapReduce vs Devectorized
 
 In many applications, there is some computation that is repeated many, many times with slightly different values (perhaps measurements or initial conditions or model parameters).  There are several ways to tell the computer to perform the calculation many times, each with its own advantages and disadvantages.  In this exercise, you will compare multiple approaches for evaluating an integral over a given region.  

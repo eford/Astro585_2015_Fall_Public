@@ -1,7 +1,5 @@
 # Astro 585 Lab 4, Exercise 1
 
-### Still need to test, proof and finalize.
-
 ### Performance Comparisons (1/2):  Profiling, Loops vs Vectorize vs Map & Branching
 
 1.  Profiling

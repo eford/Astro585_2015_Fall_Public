@@ -5,7 +5,7 @@
 ### 1.  Dense Matrix Multiply
 Many problems involve performing linear algebra.  Fortunately, there are excellent libraries that make use of clever algorithms to perform linear algebra efficiently and robustly.  In this exercise, youll write multiple functions to multiply a matrix times a vector to compare their performance.  
 
-a)  Write a function that takes a matrix 'A' (type Array{Float64,2}) and a vector 'b' (type Array{Float64,1}) and returns the product of A times b using Julias default linear algebra routines (accessed by just A*b). 
+a)  Write a function that takes a matrix `A` (type Array{Float64,2}) and a vector `b` (type Array{Float64,1}) and returns the product of `A` times `b` using Julias default linear algebra routines (accessed by just A*b). 
 
 b) Write a function that takes a matrix A and a vector b and returns the product of A times b, but without using Julias default linear algebra routines.  You'll use two loops.  For this part, let the inner loop run over the columns (i.e., first index) for A.  Test that this function gives the same answer as the function from part 1a (modulo floating point arithmetic).
 

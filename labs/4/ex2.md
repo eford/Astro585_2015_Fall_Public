@@ -15,7 +15,7 @@ b.  Write a function to evaluate the integral, \int_a^b dx f(x) using a for loop
 
 c.  Write a function to evaluate the integral, \int_a^b dx f(x) using vector notation.  
 
-d.  Write a function to evaluate the integral, \int_a^b dx f(x) using the ['map'](http://docs.julialang.org/en/release-0.3/stdlib/base/?highlight=map#Base.map) and [reduce](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=reduce#Base.reduce) functions.
+d.  Write a function to evaluate the integral, \int_a^b dx f(x) using the ['map'](http://docs.julialang.org/en/release-0.3/stdlib/collections/#Base.map) and [reduce](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=reduce#Base.reduce) functions.
 
 e.  Write a function to evaluate the integral, \int_a^b dx f(x) using the ['mapreduce'](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=mapreduce#Base.mapreduce) function.  
 

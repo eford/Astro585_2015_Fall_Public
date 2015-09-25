@@ -163,5 +163,6 @@ as you add more models and datasets, the number of combinations of models and da
 
 f.  (Optional) Try implementing your best suggestion from part e.
 
-g.  (Optional)  Add to your modules a function `chisq_sinusoid_bc(param::Vector)` that computes the sum of the chi-square statistics for both planets (using functions written in part c & d), where most of the input parameters are independent, but the  sinusoids have a common period.  Test and apply to the datafiles provided.
+g.  (Optional)  Add to your modules a function `chisq_sinusoid_bc(param::Vector)` that computes the sum of the chi-square statistics for both planets (using functions written in part c & d), where most of the input parameters are independent, but the  sinusoids have a common period.  Test and apply to the datafiles provided.  
 
+h.  (Optional)  Profile your code.  If this function were being called many times, what could you do to improve it's efficiency?

@@ -111,7 +111,7 @@ end # Module SimulatedData
 ```
 (If it doesn't work, check that your `Fitting` module is correct.)
 
-The SimualtedData module provides a function (`SimulatedData.chisq_linear_b`) that takes only a set of parameter values and returns a chi-squared statistic describing how well a model with those parameter values matches the data that is also stored in the module.  
+The SimualtedData module provides functions (`SimulatedData.chisq_linear_b` and `SimulatedData.chisq_linear_c`) that takes only a set of parameter values and returns a chi-squared statistic describing how well a model with those parameter values matches the data that is also stored in the module.  
 If your Fitting module is working, then you should be able to do
 We could access that function by doing
 ```julia
@@ -121,6 +121,14 @@ chisq_linear_b([782.0,5.7])
 but sometimes it's nice to be able to access those functions only when specifying their namespace.  So instead we'll do
 ```julia
 # We want access to variables inside SimulatedData, but only when explicitly specifying their namespace
+import SimulatedData 
+SimulatedData.chisq_linear_b([782.0,5.7])
+```
+(If you actually ran the code `using SimulatedData`, then I suggest that you clear your global namespace by running `workspace()`.  Of course, then you'll have to rerun both of the modules.  Hopefully, you've been commiting often.)
+
+Now let's use the SimualtedData module with Julia's Optim module to fit models to our data.
+
+```
 import SimulatedData 
 
 # Initial guesses for the orbital period and "zeroth" transit time
@@ -132,6 +140,7 @@ P_b_guess = SimulatedData.P_b_true+0.01*randn()
  pl_c_guess = [t0_c_guess,P_c_guess]
 
 # Calculate best-fit models with linear ephemeris
+Pkg.add("Optim")
 using Optim 
 fit_b_output = optimize(SimulatedData.chisq_linear_b,pl_b_guess)
 fit_c_output = optimize(SimulatedData.chisq_linear_c,pl_c_guess) 

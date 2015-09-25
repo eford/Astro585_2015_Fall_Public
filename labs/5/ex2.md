@@ -158,7 +158,8 @@ c. Add functions `chisq_sinusoid_b(param::Vector)` and `chisq_sinusoid_c(param::
 
 d.  Test that your functions work when using optimize to calculate the minimum chi-squared value and the values of the model parameters that maximize the goodness-of-fit based on the sinusoidal transit ephemeris model.  Once you've establish confidence that they're working well by comparing the results for your simulated data, then apply them to the datasets in the files `ttv_b.csv` and `ttv_c.csv`.  Make it easy for me to find where you report the values from that calculation.
 
-e. You may have noticed that some of your code in the two modules is quite similar, but with just a few different variables being passed One problem with the current pattern is that the number of combinations of models and datasets grows geometrically, rather than linearly.  How could one write even more general code that 
+e. You may have noticed that some of your code in the two modules is quite similar, but with just a few different variables being passed.  One problem with the current pattern is that 
+as you add more models and datasets, the number of combinations of models and datasets grows geometrically, rather than linearly, resulting in more places for bugs.  How could one write even more general code that reduces the amount of manual coding required?
 
 f.  (Optional) Try implementing your best suggestion from part e.
 

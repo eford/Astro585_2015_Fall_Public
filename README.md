@@ -1,5 +1,5 @@
 # PsuAstro585
-This is the template repository that students taking Penn State's Astro 585 (Fall 2015) should clone.
+This is the public version of the template repository for Penn State's Astro 585 (Fall 2015).  Students should clone the private version.
 
 ## [Course Webpage](https://docs.google.com/document/d/1xJQ4EjxgFad_KiAkF5ACpHT-Z8He0l8GZFcdifAOAvc/edit?usp=sharing)
 ## [Syllabus](https://docs.google.com/document/d/12lsPWaYebNK49uqTT3JBdDFqU52Y917mJl-zTLWm7i0/edit?usp=sharing)

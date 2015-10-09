@@ -47,7 +47,7 @@ and  define a loop-based integrate function like from the previous lab.
 # Calculate \int_a^b dx func(x) using n function evaluations
 # Approximates integral as uniformly spaced rectangles
 # Avoids evaluating func at a or b, in case of singularities
-function int_normal_pdf(a::Real, b::Real, n::Integer = 1000000)
+function int_normal_pdf_serial(a::Real, b::Real, n::Integer = 1000000)
   @assert(n>2)
   integral = 0.
   for i in 1:n
@@ -67,7 +67,7 @@ function test_int_normal_pdf(func::Function; n::Integer = 1000000, eps::Real = 1
     @test_approx_eq_eps func(-limit,limit) erf(limit/sqrt(2.0)) eps
   end
 end
-test_int_normal_pdf(int_normal_pdf)
+test_int_normal_pdf(int_normal_pdf_serial)
 ```
 
 b.  Now, read the [documentation about parallel for loops](http://julia.readthedocs.org/en/latest/manual/parallel-computing/#parallel-map-and-loops).  What do you expect will happen if we try to parallelize the integration function simply by adding the @parallel macro, as in the following code?  
@@ -142,18 +142,16 @@ Note that we use the standard `map` on a DistributedArray and not `pmap`.  Julia
 
 k. How does it's performance compare to previous implementations?  Why?
 
-l.  Now, we'll implement a more efficient parallelization using distribute arrays.  First, identify two ways that the performance could be improved.
+l.  Now, we'll implement a more efficient parallelization using distribute arrays.  First, let's replace the call to `map` with [mapreduce](http://julia.readthedocs.org/en/latest/stdlib/collections/?highlight=mapreduce#Base.mapreduce).  
 
-To implement this, you'll likely want to look up several functions  below and consider them piece by piece.  
-First, create a distributed array with [dzeros](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=dzeros#Base.dzeros), [dones](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=dones#Base.dones), [drand](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=drand#Base.drand) or [drandn](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=drand#Base.drandn).  
-
-Next, look at which processors are storing data for that array with [procs()](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=procs#Base.procs).
+m.  Next, let's try to implement an even more efficient way of computing the integral while minimizing unnecessary communications.  
+The following functions will likely be useful.
+You can look at which processors are storing data for that array with [procs()](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=procs#Base.procs).
 You can check which parts of the array are being stored on a given processor using [localpart()](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=localpart#Base.localpart) or [myindexes()](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=localindexes#Base.localindexes)
 
 Then, use [@spawnat](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=spawnat#Base.@spawnat) and [localpart()](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=localpart#Base.localpart) to have a processor operate only on the portion of the distributed array that it has in its own memory.
 Finally, combine [fetch](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=fetch#Base.fetch) with [map](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=map#Base.map) to retrieve the results from each processor working on it's own portion of the distributed array.
 Finally, use [reduce](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=reduce#Base.reduce) to combine all these elements.  
-Optionally, try to improve the efficiency using [mapreduce](http://julia.readthedocs.org/en/latest/stdlib/collections/?highlight=mapreduce#Base.mapreduce).  
 
 m.  Once you've tested your function, benchmark your function using different numbers of workers and compare it's performance to the previous implementations.  
 

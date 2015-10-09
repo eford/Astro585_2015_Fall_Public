@@ -98,7 +98,7 @@ Try it.  Did it do what you expected?  If not, why?
 d.  Now, we've eliminated some of the error messages, but our test still fails.  And it can fail badly.  Why is that?
 
 The computations are  being spread across the different processors, but each thread has its own value of `integral` and the threads are not communicating with each other.  In this case, we want Julia to perform a "reduction" operation.  That is each thread will contribute compute the sum of integrands and then those are to be added together.  This type of operation is so common, that Julia provides a special syntax that makes this kind of loop easy:
-``julia
+```julia
 function int_normal_pdf(a::Real, b::Real, n::Integer = 1000000)
   @assert(n>2)
   integral = @parallel (+) for i in 1:n
@@ -131,7 +131,7 @@ i.  Under what circumstances would `pmap` be a good choice for parallelizing som
 
 j.  Next, we'll try parallelizing the same algorithm a third way, using [Distributed Arrays](http://julia.readthedocs.org/en/release-0.3/manual/parallel-computing/#distributed-arrays).  (These are included in the base julia language in v0.3*.  If you're using julia v0.4, then you'll need to add the [DistributedArray package](https://github.com/JuliaParallel/DistributedArrays.jl) first.
 A trivial implementation would be
-```
+```julia
 function int_normal_pdf(a::Real, b::Real, n::Integer = 1000000)
   @assert(n>2)
   x = distribute([ a+i*(b-a)/(n+1) for i in 1:n ])

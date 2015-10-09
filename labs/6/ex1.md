@@ -11,7 +11,7 @@ First, check how many processors your computer has. On linux, you can do this by
 nprocs()
 ```
 
-When using the REPL interface, you can tell Julia to use multiple cores on a single workstation by starting it like "julia -p 4". When using IJulia, it's easier to tell it to add N processors from within the notebook with the addprocs(N) command. Using addprocs() without an arguement will tell it to add as many workers as your system (thinks it) has cores.  (Some CPUs give misleading information, presenting more "virtual cores" than "physical cores".)  Tell your current Julia session to add as many workers as your workstation (says it) has.
+When using the REPL interface, you can tell Julia to use multiple cores on a single workstation by starting it like "julia -p 4". When using IJulia, it's easier to tell it to add N processors from within the notebook with the addprocs(N) command.  (With Julia v0.4.*, using addprocs() without an arguement will tell it to add as many workers as your system (thinks it) has cores.  Be aware that some CPUs give misleading information, presenting more "virtual cores" than "physical cores".)  Tell your current Julia session to add as many workers as your workstation (says it) has.
 ```julia
 addprocs()
 ```
@@ -61,7 +61,7 @@ end
 Of course, we need to make tests to ensure that our function is working correctly.  E.g., 
 ```julia
 using Base.Test
-function test_int_normal_pdf(func::Function; n::Integer = 100000, eps::Real = 1.0e-6)
+function test_int_normal_pdf(func::Function; n::Integer = 100000, eps::Real = 1.0e-5)
   limits = 1:5
   for limit in limits
     @test_approx_eq_eps func(-limit,limit) erf(limit/sqrt(2.0)) eps

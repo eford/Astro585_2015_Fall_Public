@@ -157,7 +157,7 @@ You could use [reduce](http://julia.readthedocs.org/en/release-0.3/stdlib/collec
 If you get stuck on this part, then it may be helpful to workthrough what happens when you run the followig code.
 ```julia
  dist_arr = drand(20)
- map( fetch, [ @spawnat p localpart(x) for p in procs(dist_arr) ])
+ map( fetch, [ @spawnat p localpart(dist_arr) for p in procs(dist_arr) ])
 ```
 
 If you're still stuck, you can look in the file ex1m_help.md for an example of a solution to this part.  If you do that, then write out a description of each part of the key line of code is doing.  And identify one way that it could still be improved further.  

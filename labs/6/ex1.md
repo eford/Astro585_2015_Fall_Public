@@ -47,7 +47,7 @@ and  define a loop-based integrate function like from the previous lab.
 # Calculate \int_a^b dx func(x) using n function evaluations
 # Approximates integral as uniformly spaced rectangles
 # Avoids evaluating func at a or b, in case of singularities
-function int_normal_pdf_serial(a::Real, b::Real, n::Integer = 1000000)
+function int_normal_pdf_serial(a::Real, b::Real, n::Integer = 100000)
   @assert(n>2)
   integral = 0.
   for i in 1:n
@@ -61,7 +61,7 @@ end
 Of course, we need to make tests to ensure that our function is working correctly.  E.g., 
 ```julia
 using Base.Test
-function test_int_normal_pdf(func::Function; n::Integer = 1000000, eps::Real = 1.0e-6)
+function test_int_normal_pdf(func::Function; n::Integer = 100000, eps::Real = 1.0e-6)
   limits = 1:5
   for limit in limits
     @test_approx_eq_eps func(-limit,limit) erf(limit/sqrt(2.0)) eps
@@ -72,7 +72,7 @@ test_int_normal_pdf(int_normal_pdf_serial)
 
 b.  Now, read the [documentation about parallel for loops](http://julia.readthedocs.org/en/latest/manual/parallel-computing/#parallel-map-and-loops).  What do you expect will happen if we try to parallelize the integration function simply by adding the @parallel macro, as in the following code?  
 ```
-function int_normal_pdf(a::Real, b::Real, n::Integer = 1000000)
+function int_normal_pdf(a::Real, b::Real, n::Integer = 100000)
   @assert(n>2)
   integral = 0.
   @parallel for i in 1:n
@@ -99,7 +99,7 @@ d.  Now, we've eliminated some of the error messages, but our test still fails. 
 
 The computations are  being spread across the different processors, but each thread has its own value of `integral` and the threads are not communicating with each other.  In this case, we want Julia to perform a "reduction" operation.  That is each thread will contribute compute the sum of integrands and then those are to be added together.  This type of operation is so common, that Julia provides a special syntax that makes this kind of loop easy:
 ```julia
-function int_normal_pdf(a::Real, b::Real, n::Integer = 1000000)
+function int_normal_pdf(a::Real, b::Real, n::Integer = 100000)
   @assert(n>2)
   integral = @parallel (+) for i in 1:n
     x = a+i*(b-a)/(n+1)
@@ -122,7 +122,7 @@ http://julia.readthedocs.org/en/latest/manual/parallel-computing/?highlight=para
 
 g.  Before you run your code, do you expect the performance to be better or worse than using a parallel for loop?  What about relative to a non-parallelized algorithm?
 
-h.  Try it.  After you make sure it's working correctly, benchmark it with 1, 2, 3, or 4 processors.  Compare the performance and explain why it behaves that way.  
+h.  Try it.  (In this and subsequent parts, it's probably wise to start with a smaller value of n and work your way up, in case you have code that will take a long time.) After you make sure it's working correctly, benchmark it with 1, 2, 3, or 4 processors.  Compare the performance and explain why it behaves that way.  
 
 i.  Under what circumstances would `pmap` be a good choice for parallelizing some code?
 
@@ -132,7 +132,7 @@ i.  Under what circumstances would `pmap` be a good choice for parallelizing som
 j.  Next, we'll try parallelizing the same algorithm a third way, using [Distributed Arrays](http://julia.readthedocs.org/en/release-0.3/manual/parallel-computing/#distributed-arrays).  (These are included in the base julia language in v0.3*.  If you're using julia v0.4, then you'll need to add the [DistributedArray package](https://github.com/JuliaParallel/DistributedArrays.jl) first.
 A trivial implementation would be
 ```julia
-function int_normal_pdf(a::Real, b::Real, n::Integer = 1000000)
+function int_normal_pdf(a::Real, b::Real, n::Integer = 100000)
   @assert(n>2)
   x = distribute([ a+i*(b-a)/(n+1) for i in 1:n ])
   integral = sum(map(normal_pdf,x)) * (b-a)/n 
@@ -151,11 +151,10 @@ You can check which parts of the array are being stored on a given processor usi
 
 Then, use [@spawnat](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=spawnat#Base.@spawnat) and [localpart()](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=localpart#Base.localpart) to have a processor operate only on the portion of the distributed array that it has in its own memory.
 Finally, combine [fetch](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=fetch#Base.fetch) with [map](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=map#Base.map) to retrieve the results from each processor working on it's own portion of the distributed array.
-Finally, use [reduce](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=reduce#Base.reduce) to combine all these elements.  
+You could use [reduce](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=reduce#Base.reduce) to combine all these elements or you could again use l.  Now, we'll implement a more efficient parallelization using distribute arrays.  First, let's replace the call to `map` with [mapreduce](http://julia.readthedocs.org/en/latest/stdlib/collections/?highlight=mapreduce#Base.mapreduce).  
 
-m.  Once you've tested your function, benchmark your function using different numbers of workers and compare it's performance to the previous implementations.  
+If you get stuck on this part, you can look in the file ex1m_help.md for an example of a solution to this part.  If you do that, then write out a description of each part of the key line of code is doing.  And identify one way that it could still be improved further.  
 
-n.  When would using a DistributedArray be a good choice for parallelizing your code?
+n.  Once you've tested your function, benchmark your function using different numbers of workers and compare it's performance to the previous implementations.  
 
-
-
+o.  When would using a DistributedArray be a good choice for parallelizing your code?

@@ -140,9 +140,9 @@ end
 ```
 Note that we use the standard `map` on a DistributedArray and not `pmap`.  Julia recognizes that map applied to a DistributedArray should be parallelized.  Test that the code using a DistributedArray works.  
 
-h. How does it's performance compare to previous implementations?  Why?
+k. How does it's performance compare to previous implementations?  Why?
 
-i.  Now, we'll implement a more efficient parallelization using distribute arrays.  First, identify two ways that the performance could be improved.
+l.  Now, we'll implement a more efficient parallelization using distribute arrays.  First, identify two ways that the performance could be improved.
 
 To implement this, you'll likely want to look up several functions  below and consider them piece by piece.  
 First, create a distributed array with [dzeros](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=dzeros#Base.dzeros), [dones](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=dones#Base.dones), [drand](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=drand#Base.drand) or [drandn](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=drand#Base.drandn).  
@@ -155,9 +155,9 @@ Finally, combine [fetch](http://julia.readthedocs.org/en/release-0.3/stdlib/para
 Finally, use [reduce](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=reduce#Base.reduce) to combine all these elements.  
 Optionally, try to improve the efficiency using [mapreduce](http://julia.readthedocs.org/en/latest/stdlib/collections/?highlight=mapreduce#Base.mapreduce).  
 
-j.  Once you've tested your function, benchmark your function using different numbers of workers and compare it's performance to the previous implementations.  
+m.  Once you've tested your function, benchmark your function using different numbers of workers and compare it's performance to the previous implementations.  
 
-k.  When would using a DistributedArray be a good choice for parallelizing your code?
+n.  When would using a DistributedArray be a good choice for parallelizing your code?
 
 
 

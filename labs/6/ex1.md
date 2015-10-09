@@ -6,7 +6,7 @@
 ## Telling Julia to use multiple processors
 a.  Here we'll parallelize some simple code from a previous exercise. I'll walk you though the syntax in Julia and highlight some potential mistakes.
 
-First, check how many processors your computer has. On linux, you can do this by running /cat/cpuinfo from the command line and seeing how many processors are listed. If your machine only has one, then ssh to another computer with Julia installed for the parallel parts.  Next, check how many processor Julia is currently using.
+First, check how many processors your computer has. On linux, you can do this by running `cat /proc/cpuinfo` from the command line and seeing how many processors are listed. If your machine only has one, then ssh to another computer with Julia installed for the parallel parts.  Next, check how many processor Julia is currently using.
 ```julia
 nprocs()
 ```
@@ -160,7 +160,6 @@ If you get stuck on this part, then it may be helpful to workthrough what happen
  map( fetch, [ @spawnat p localpart(dist_arr) for p in procs(dist_arr) ])
 ```
 
-If you're still stuck, you can look in the file ex1m_help.md for an example of a solution to this part.  If you do that, then write out a description of each part of the key line of code is doing.  And identify one way that it could still be improved further.  
 
 n.  Once you've tested your function, benchmark your function using different numbers of workers and compare it's performance to the previous implementations.  
 

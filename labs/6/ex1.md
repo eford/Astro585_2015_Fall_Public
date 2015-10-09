@@ -153,7 +153,14 @@ Then, use [@spawnat](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel
 Finally, combine [fetch](http://julia.readthedocs.org/en/release-0.3/stdlib/parallel/?highlight=fetch#Base.fetch) with [map](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=map#Base.map) to retrieve the results from each processor working on it's own portion of the distributed array.
 You could use [reduce](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=reduce#Base.reduce) to combine all these elements or you could again use l.  Now, we'll implement a more efficient parallelization using distribute arrays.  First, let's replace the call to `map` with [mapreduce](http://julia.readthedocs.org/en/latest/stdlib/collections/?highlight=mapreduce#Base.mapreduce).  
 
-If you get stuck on this part, you can look in the file ex1m_help.md for an example of a solution to this part.  If you do that, then write out a description of each part of the key line of code is doing.  And identify one way that it could still be improved further.  
+
+If you get stuck on this part, then it may be helpful to workthrough what happens when you run the followig code.
+```julia
+ dist_arr = drand(20)
+ map( fetch, [ @spawnat p localpart(x) for p in procs(dist_arr) ])
+```
+
+If you're still stuck, you can look in the file ex1m_help.md for an example of a solution to this part.  If you do that, then write out a description of each part of the key line of code is doing.  And identify one way that it could still be improved further.  
 
 n.  Once you've tested your function, benchmark your function using different numbers of workers and compare it's performance to the previous implementations.  
 

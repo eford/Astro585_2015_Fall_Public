@@ -1,4 +1,4 @@
-# PSU Astro585:  Lab 6  
+# PSU Astro585:  Lab 7  
 # Parallel Computing:  Distributed Memory Clusters
 
 ## Exercises

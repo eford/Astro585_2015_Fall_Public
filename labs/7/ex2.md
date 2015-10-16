@@ -3,7 +3,7 @@
 
 ## Exercise 2 Using Julia's DistributedArrays
 
-In this exercise, you will learn how to use Distributed Arrays to parallelize a computation over processors on a cluster.  Note that DistributedArrays were moved from the base Julia library in v0.3.* to their own package starting in julia v0.4.*.  Below, I'll assume that you're using a v0.4.  
+In this exercise, you will learn how to use Distributed Arrays to parallelize a computation over processors on a cluster.  Note that DistributedArrays were moved from the base Julia library in v0.3.* to their own package starting in julia v0.4.*.  
 
 First, make a simple parallel version of our the calc_pi function from the previous exercise.  Using the `@parallel` macro (along with a "reducer" operation).  Since this takes just a second or two, you can test it interactively using a single processor core without submitting a PBS job.  
 
@@ -24,7 +24,11 @@ How does the time required for the computation vary as a function of the number 
 Is the compute time affected by whether you request processors on the same node or allow for them to be on different nodes?  Did the time you waited before your job started depend on whether you request processors on the same node or allow for them to be on different nodes?  
 
 d.  Now, let's create a version that replaces the parallel for loop with a call to [`mapreduce`](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=mapreduce#Base.mapreduce) operating on distributed arrays.  You can easily create a distributed array containing pseudo-random numbers between 0 and 1 using `drand(N)` from the [DistributedArrays](https://github.com/JuliaParallel/DistributedArrays.jl) package.  
-Note that with Julia v0.4, you can perform arithmetic on distributed arrays using syntax like `x.*x`, as well as [`map`](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=map#Base.map) or [`mapreduce`](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=mapreduce#Base.mapreduce).
+If you're using Julia v0.4, you can perform arithmetic on distributed arrays using syntax like `x.*x`, as well as [`map`](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=map#Base.map) or [`mapreduce`](http://docs.julialang.org/en/release-0.3/stdlib/collections/?highlight=mapreduce#Base.mapreduce).  If you're using Julia v0.3.*, then you'll likely want to use syntax more like
+```julia
+mapreduce( fetch, +, [ @spawnat p num_in_unit_circle(localpart(x),localpart(y)) for p in procs(x) ])
+```
+where `x` and `y` are DistributedArrays and num_in_unit_circle is a function taking two standard arrays containing x and y values and returning how many have `x*x+y*y<=1`.
  
 e.  Submit the revised code in jobs requesting 1, 2, 4 or 8 processors.  (Again, remember what time you submitted the jobs.)  For 2, 4 and 8 try both requesting processors regardless of whether they are on the same node and also requesting all processors to be on the same node.   
 

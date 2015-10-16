@@ -6,7 +6,7 @@
 - Lab #4:  Performance Comparisons 1/2 : Profiling, Loops vs Vectorized vs Map
 - Lab #5:  Performance Comparisons 2/2:  Memory Access
 - Lab #6:  Parallel Programming for a Multi-Core System
-- Lab #7:  Parallel Programming for Clusters (short)
+- Lab #7:  Parallel Programming for Clusters
 - Lab #8:  GPU Computing  (short)
 - Lab #9?: Cloud Computing  (short)
 

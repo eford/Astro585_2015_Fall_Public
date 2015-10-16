@@ -12,14 +12,14 @@ b.  Ssh into one of the Lion-X systems (e.g., lionxf.rcc.psu.edu, lionxj.rcc.psu
 Run the following commands
 ```tcsh
 module load git            
-module load module load julia/0.4.0-rc4
+module load julia/0.3.11_483dbf5279
 git config --global url."https://".insteadOf git://
 ```
 so that git and julia v0.4 are in your path and to tell git how to work around the firewalls on this system.  (You only should need to do this git config command once on the Lion-X systems.)  
 
 Do a simple test that you can run git and julia.  Remember that you're not to do anything computationally intensive on the head node of a cluster.  
 
-c.  Copy the julia-demo-serial.pbs and julia-demo-serial.jl files into a subdirectory that you'll be working from (either by cloning the git repository, using scp or simply copying and pasting).  Read through the PBS script to understand what it's doing and to make the one suggested trivial change.  Then, while in the same directory as those files,  submit a job to the PBS scheduler
+c.  Copy the julia-demo-serial.pbs and julia-demo-serial.jl files from ~ebf11/public/ into a subdirectory that you'll be working from (either by cloning the git repository, using scp or simply copying and pasting).  Read through the PBS script to understand what it's doing and to make the one suggested trivial change.  Then, while in the same directory as those files,  submit a job to the PBS scheduler
 ```tcsh
 qsub julia-demo-serial.pbs
 ```

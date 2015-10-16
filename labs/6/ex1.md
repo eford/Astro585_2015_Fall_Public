@@ -119,6 +119,7 @@ e.  Once you get it working, benchmark the performance of your integration funct
 
 f.  Now, reimplement the same algorithm, but using a different pattern for parallelizing the code that uses julia's `pmap` function.  It's described both at the end of the [parallel loops section](
 http://julia.readthedocs.org/en/latest/manual/parallel-computing/?highlight=parallel-map-and-loops#parallel-map-and-loops) you read earlier and also in the manual under [pmap](http://julia.readthedocs.org/en/latest/stdlib/parallel/#Base.pmap).  
+It might be useful to first implement a serial version using the regular [`map`](http://julia.readthedocs.org/en/release-0.3/stdlib/collections/?highlight=map#Base.map) function.
 
 g.  Before you run your code, do you expect the performance to be better or worse than using a parallel for loop?  What about relative to a non-parallelized algorithm?
 

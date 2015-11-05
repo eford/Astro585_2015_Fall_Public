@@ -82,8 +82,7 @@ e.  Repeat the above caulations for different values of n (try up to n=100000000
 f.  How large of a dataset does it take before it's worth using the GPU for this problem, assuming that your data is already on the GPU and the results don't need to be copied to the CPU?
 How large of a dataset does it take before it's worth using the GPU for this problem, assuming that you have to copy input data to the GPU and output data to the CPU?  
 
-g.  Before you exit julia
-# Unload functions from GPU and reset the GPU
+g.  Before you exit julia, unload the functions from the GPU and reset the GPU
 ```julia
 unload_functions!(md)
 close_cuda()

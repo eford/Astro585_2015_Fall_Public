@@ -21,8 +21,10 @@ md = load_functions()
 @time int_normal_gpu_reduce_on_cpu(-1.0,1.0,10000000)
 ```
 
-b.  Write a new version that perform most (or all) of the work for the summation on the GPU.
+b.  Adapt your function to have the GPU work in single precission (float in C/CUDA or Float32 in Julia) arithmetic instead of double precission.  How does the performance compare?  What do you think explains these differences?
 
+
+d.  Write a new version that perform most (Optionally: all) of the work for the summation on the GPU.
 ```julia
 @time int_normal_gpu_reduce_on_gpu(-1.0,1.0,1000)
 @time int_normal_gpu_reduce_on_gpu(-1.0,1.0,1000)
@@ -32,6 +34,6 @@ b.  Write a new version that perform most (or all) of the work for the summation
 @time int_normal_gpu_reduce_on_gpu(-1.0,1.0,10000000)
 ```
 
-c.  Compare the peformance of the two versions as a function of the number of function evaluations.  
+e.  Compare the peformance of the two versions as a function of the number of function evaluations.  
 Now how many function evaluations do you need to perform to make it faster on the GPU than on the CPU?
 

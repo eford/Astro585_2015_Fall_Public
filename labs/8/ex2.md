@@ -3,7 +3,7 @@
 
 ## Exercise 2:  Performing a Parallel Reduction on the GPU
 
-a.  Write a function to compute the integraion of the standard normal distribution between a and b, using N function evaluations which are performed in parallel using the GPU-accelerated version of std_normal_pdf.  For now, you can sum the integrands on the CPU
+a.  Compute the integraion of the standard normal distribution between a and b, using N function evaluations which are performed in parallel using the GPU-accelerated version of std_normal_pdf.  For now, you can sum the integrands on the CPU
 
 ```julia
 include("cuda_basics.jl")  
@@ -21,10 +21,7 @@ md = load_functions()
 @time int_normal_gpu_reduce_on_cpu(-1.0,1.0,10000000)
 ```
 
-b.  Adapt your function to have the GPU work in single precission (float in C/CUDA or Float32 in Julia) arithmetic instead of double precission.  How does the performance compare?  What do you think explains these differences?
-
-
-d.  Write a new version that perform most (Optionally: all) of the work for the summation on the GPU.
+b.  Write a new version that perform most (Optionally: all) of the work for the summation on the GPU.
 ```julia
 @time int_normal_gpu_reduce_on_gpu(-1.0,1.0,1000)
 @time int_normal_gpu_reduce_on_gpu(-1.0,1.0,1000)
@@ -34,6 +31,15 @@ d.  Write a new version that perform most (Optionally: all) of the work for the 
 @time int_normal_gpu_reduce_on_gpu(-1.0,1.0,10000000)
 ```
 
-e.  Compare the peformance of the two versions as a function of the number of function evaluations.  
+c.  Compare the peformance of the two versions as a function of the number of function evaluations.  
 Now how many function evaluations do you need to perform to make it faster on the GPU than on the CPU?
+
+d.  Explain the performancne pattern you observe.  Is this inevitable?  Is there something you could do to speed up the GPU calculation significantly?  Predict how much faster the GPU version would likely be if you went to the trouble of implementing an optimal version of the sumation function.
+
+e.  [Optional]  Adapt your function to have the GPU work in single precission (float in C/CUDA or Float32 in Julia) arithmetic instead of double precission.  How does the performance compare?  What do you think explains these differences?
+
+f.  [Optional]  Write a more efficient kernel to sum the array.  Feel free to look at examples on the web.
+
+
+
 

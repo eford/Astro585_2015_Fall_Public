@@ -32,10 +32,14 @@ function load_functions(T::Type=Float64)
     global std_normal_pdf_kernel = CuFunction(md, "std_normal_pdf_double")
     global normal_pdf_kernel = CuFunction(md, "normal_pdf_double")
     global block_sum_kernel = CuFunction(md, "block_sum_double")
+    global sum_kernel = CuFunction(md, "sum_simplistic_double")
+#=
   elseif T==Float32
     global std_normal_pdf_kernel = CuFunction(md, "std_normal_pdf_float")
     global normal_pdf_kernel = CuFunction(md, "normal_pdf_float")
     global block_sum_kernel = CuFunction(md, "block_sum_float")
+    global sum_kernel = CuFunction(md, "sum_simplistic_float")
+=#
   else
     throw("Invalid type specified")
   end

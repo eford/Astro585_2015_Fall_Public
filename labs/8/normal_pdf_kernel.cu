@@ -46,6 +46,29 @@ extern "C"   // ensure function name will be left alone rather than mangled like
            }
     }
 
+__global__ void sum_simplistic_double(const double *input, double *output, unsigned int n)
+{
+  unsigned int i = (blockIdx.y * gridDim.x + blockIdx.x) * blockDim.x + threadIdx.x;
+  double sum = 0.0;
+  if (i==0)
+    {
+    for(int j=0;j<n;++j)
+       sum += input[j];
+    }
+  output[0] = sum;
+}
+
+__global__ void sum_simplistic_float(const float *input, float *output, unsigned int n)
+{
+  unsigned int i = (blockIdx.y * gridDim.x + blockIdx.x) * blockDim.x + threadIdx.x;
+  float sum = 0.0;
+  if (i==0)
+    {
+    for(int j=0;j<n;++j)
+       sum += input[j];
+    }
+  output[0] = sum;
+}
 
 // Adopted from https://code.google.com/p/stanford-cs193g-sp2010/source/browse/trunk/tutorials/sum_reduction.cu
 // this kernel computes, per-block, the sum
@@ -91,50 +114,4 @@ __global__ void block_sum_double(const double *input,
     per_block_results[block_id_1d] = sdata[0];
   }
 }
-
-__global__ void block_sum_float(const float *input,
-                          float *per_block_results,
-                          unsigned int n)
-{
-  extern __shared__ float sdataf[];
-
-  unsigned int i = (blockIdx.y * gridDim.x + blockIdx.x) * blockDim.x + threadIdx.x;
-
-  // load input into __shared__ memory
-  float x = 0.0;
-  if(i < n)
-  {
-    x = input[i];
-  }
-  sdataf[threadIdx.x] = x;
-  __syncthreads();
-
-  // contiguous range pattern
-  for(unsigned int offset = blockDim.x / 2;
-      offset > 0;
-      offset >>= 1)
-  {
-    if(threadIdx.x < offset)
-    {
-      // add a partial sum upstream to our own
-      sdataf[threadIdx.x] += sdataf[threadIdx.x + offset];
-    }
-
-    // wait until all threads in the block have
-    // updated their partial sums
-    __syncthreads();
-  }
-
-  // thread 0 writes the final result
-  if(threadIdx.x == 0)
-  {
-    unsigned int block_id_1d = (blockIdx.y * gridDim.x + blockIdx.x);
-    per_block_results[block_id_1d] = sdataf[0];
-  }
-}
-
-
-} 
-
-
 

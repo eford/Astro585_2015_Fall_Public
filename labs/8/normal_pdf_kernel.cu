@@ -115,3 +115,5 @@ __global__ void block_sum_double(const double *input,
   }
 }
 
+}
+
